@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Healthify</title>
+        
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" href="/">Healthify</a>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/patienthome">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pprofile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pbookings">Your Bookings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/plogout">Log out</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <body style="background-color: #E8ECEF;padding: 5%;">
+        <div class="container">
+            <div class="jumbotron centered">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Fill the details to book your consultation</h3>
+                        <form action="/bookconsult/<%=User._id%>" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" name="name" value="<%=patient.name%>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Date:</label>
+                                <input type="text" class="form-control" name="date" value="<%=date%>" readonly>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="slot">Select slot:</label>
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Duration</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Select Slot</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    <%  var now = new Date(); %>
+                                    <%  var t = now.getHours().toString()+":"+now.getMinutes().toString()+":"+now.getSeconds().toString(); %>
+                                    <%  var d = now.getFullYear().toString()+"-"+"0"+(now.getMonth()+1).toString()+"-"+now.getDate().toString(); %>
+                                    <% if(date == d){ %>
+                                            
+                                            <%  for(let key in book){ %>
+                                                <%      if(book.hasOwnProperty(key)){ %>
+                                                <%          if(key == "ignore"){ %>
+                                                <%              continue;      %>
+                                                <%          } %>
+                                                <%          if(key == "date"){ %>
+                                                <%              continue;      %>
+                                                <%          }else if(key > t && book[key] == 0){ %>
+                                                                <tr>
+                                                                    <td><%= key %></td>
+                                                                    <td>30 minutes</td>
+                                                                    <td>Availabile</td>
+                                                                    <td><input type="radio" class="form-check-input" name="slot" value="<%=key%>" required></td>
+                                                                </tr>
+                                                <%          }else{ %>
+                                                                <tr>
+                                                                    <td><%=key %></td>
+                                                                    <td>Nil</td>
+                                                                    <td>Slot not available for this date</td>
+                                                                </tr>
+                                                    <%      } %>
+                                                <%      } %>
+                                            <%  } %>
+                                    <% }else {  %>
+                                        <%  for(let key in book){ %>
+                                            <%      if(book.hasOwnProperty(key)){ %>
+                                            <%          if(key == "ignore"){ %>
+                                            <%              continue;      %>
+                                            <%          } %>
+                                            <%          if(key == "date"){ %>
+                                            <%              continue;      %>
+                                            <%          }else if(book[key] == 0){ %>
+                                                            <tr>
+                                                                <td><%= key %></td>
+                                                                <td>30 minutes</td>
+                                                                <td>Availabile</td>
+                                                                <td><input type="radio" class="form-check-input" name="slot" value="<%=key%>" required></td>
+                                                            </tr>
+                                            <%          }else{ %>
+                                                            <tr>
+                                                                <td><%= key %></td>
+                                                                <td>Nil</td>
+                                                                <td>Slot not available for this date</td>
+                                                            </tr>
+                                                <%      } %>
+                                            <%      } %>
+                                        <%  } %>
+                                    <% } %>
+                                      
+                                    </tbody>
+                                  </table>
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Email ID:</label>
+                                <input type="text" class="form-control" name="username" value="<%=patient.username%>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Gender:</label>
+                                <div class="form-check">
+                                    <input style="margin-left: 0rem; margin-top: 0.40rem;" type="radio" class="form-check-input" name="gender" value="male" required>
+                                    <label class="form-check-label" for="gender">
+                                        Male
+                                    </label>
+                                    
+                                </div>
+                                <div class="form-check">
+                                    <input style="margin-left: 0rem; margin-top: 0.40rem;" type="radio" class="form-check-input" name="gender" value="female">
+                                    <label class="form-check-label" for="gender">
+                                        Female
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input style="margin-left: 0rem; margin-top: 0.40rem;" type="radio" class="form-check-input" name="gender" value="other">
+                                    <label class="form-check-label" for="gender">
+                                        Other
+                                    </label>  
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of birth:</label>
+                                <input type="text" class="form-control" name="dob" value="<%=patient.dob.split('T')[0]%>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Age:</label>
+                                <input type="number" class="form-control" name="age">
+                            </div>
+                            <div class="form-group">
+                                <label>Patient Status:</label>
+                                <div class="form-check">
+                                    <input style="margin-left: 0rem; margin-top: 0.40rem;" type="radio" class="form-check-input" name="patientStatus" value="old" required>
+                                    <label class="form-check-label" for="patientStatus">
+                                        Old Patient
+                                    </label>
+                                    
+                                </div>
+                                <div class="form-check">
+                                    <input style="margin-left: 0rem; margin-top: 0.40rem;" type="radio" class="form-check-input" name="patientStatus" value="new">
+                                    <label class="form-check-label" for="patientStatus">
+                                        New Patient
+                                    </label>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mrdnum">MRD Number(if available):</label>
+                                <input type="text" class="form-control" name="mrdnum">
+                            </div>
+                            <div class="form-group">
+                                <label for="problem">Narrate breifly your problem:</label>
+                                <textarea class="form-control" name="problem" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address:</label>
+                                <input type="text" class="form-control" name="address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number:</label>
+                                <input type="number" class="form-control" name="contact" value="<%=patient.contact%>" readonly>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Details</button>
+                            
+                                
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    
+    
+</html>

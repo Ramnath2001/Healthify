@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Healthify</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body style="padding: 5%;">
+        <div class="container">
+            <div class="jumbotron centered">
+                <% if(msg !== ""){ %>
+                    <div class="alert alert-info" role="alert">
+                        <%=msg%>
+                    </div>
+                <% } %>
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Please fill in the details:</h3>
+                        <form action="/dregister" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" name="name" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Age:</label>
+                                <input type="number" class="form-control" name="age" required max="120" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth:</label>
+                                <input type="date" class="form-control" name="dob" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="qualification">Qualification:</label>
+                                <input type="text" class="form-control" name="qualification" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="speciality">Speciality:</label>
+                                <input type="text" class="form-control" name="speciality" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City Name:</label>
+                                <input type="text" class="form-control" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="hospital">Hospital/clinic name:</label>
+                                <input type="text" class="form-control" name="hospital" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Hospital/clinic address:</label>
+                                <input type="text" class="form-control" name="address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="hloc">Hospital Locality Name:</label>
+                                <input type="text" class="form-control" name="hloc" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="experience">Experience:</label>
+                                <input type="number" class="form-control" name="experience" required max="100">
+                            </div>
+                
+                            <h6 class="display-6">Working Hours (24 hour format)</h6>
+                            <div class="form-group">
+                                <label for="wstime">Start time:</label>
+                                <input type="time" class="form-control" name="wstime" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="wetime">End time:</label>
+                                <input type="time" class="form-control" name="wetime" required>
+                            </div>
+                            <h6 class="display-6">Break Hours (24 hour format)</h6>
+                            <div class="form-group">
+                                <label for="bstime">Start time:</label>
+                                <input type="time" class="form-control" name="bstime" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="betime">End time:</label>
+                                <input type="time" class="form-control" name="betime" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number:</label>
+                                <input type="number" class="form-control" name="contact" required maxlength="10">
+                            </div>
+                            <div class="form-group">
+                              <label for="email">Email:</label>
+                              <input type="email" class="form-control" name="username" required>
+                            </div>
+                            <div class="form-group">
+                              <label for="password">Choose your Password:</label>
+                              <input type="password" class="form-control" name="password" required minlength="8">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Details</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </body>
+
+    
+</html>

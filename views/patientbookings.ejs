@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Healthify</title>
+        
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/styles.css">
+
+    </head>
+
+    
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" href="/">Healthify</a>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/patienthome">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pprofile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pBookings">Your Bookings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/plogout">Log out</a>
+              </li>
+          </ul>
+        </div>
+    </nav>
+    <body style="background-color: #E8ECEF;padding: 5%;">
+      
+      <h3 class="display-6" style="margin-top: 35px;">Your Appointments:</h3>
+        <div class="container">
+          <div class="jumbotron centered">
+              <% if(bookArray.length == 0){ %>
+                <div class="alert alert-info" role="alert">
+                  You don't have any appointments.
+                </div>
+              <% } %>
+              <% bookArray.forEach(function(book){ %>
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header">
+                      <h5 style="display: inline;">Date: <%=book.booking_date%></h5>
+                      <% var t = parseInt(book.booking_time.slice(0, 2)) %>
+                      <% if(t <= 12){ %>
+                        <h5 style="display: inline; float: right;">Time: <%=book.booking_time%> AM</h5><br>
+                      <% }else{ %>
+                        <h5 style="display: inline; float: right;">Time: <%=book.booking_time%> PM</h5><br>
+                      <% } %>
+                      <% if(book.status == "No change"){ %>
+                            <h5 style="display: inline; float: left;">Status: <%=book.status%></h5>
+                      <% }else if(book.status == "Rescheduled"){ %>
+                            <h5 style="display: inline; float: left;">Status: <%=book.status%></h5><br><hr>
+                            <p class="card-text"><b>Reschedule Date:</b> <%=book.reschedule_date%><span style="float: right;"><b>Reschedule Time: </b><%=book.reschedule_time%></span><br>
+                            </p>
+                      <%}else{ %>
+                            <h5 style="display: inline; float: left;">Status: <%=book.status%></h5><br><hr>
+                            <p class="card-text"><b>Reschedule Date:</b> <%=book.reschedule_date%><span style="float: right;"><b>Reschedule Time: </b><%=book.reschedule_time%></span><br>
+                            <span style="float: left;"><b>Delayed Time: </b><%=book.delay%> Minutes</span></p>
+                      <%} %>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Consulting Doctor: Dr. <%=book.name%></h5>  
+                        <span style="float: left;"><b>Address: </b><%=book.address%></span><br>
+                        <span style="float: left;"><b>Email ID: </b><%=book.username%></span><br>
+                        <span style="float: left;"><b>Contact number: </b><%=book.contact%></span><br>
+                        <form action="/cancel/<%=book.booking_date%>/<%=book.booking_time%>/<%=book.username%>" method="POST" >
+                          <button type="submit" style="float: right;" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger">Cancel Appointment</button>   
+                        </form>
+                        <% if(book.status == "Rescheduled"){ %>
+                          <form action="/confirmReschedule/<%=book.booking_date%>/<%=book.booking_time%>" method="POST" >
+                            <button type="submit" style="float: left;" onclick="return confirm('Are you sure you want to reschedule the Appointment?');" class="btn btn-primary">Confirm Reschedule</button>   
+                          </form>
+                        <% } %>
+
+                        
+                    </div>
+                    
+                </div>
+              <% }); %>
+              
+
+              
+          </div>
+        </div>
+    </body>
+
+    
+    
+</html>
