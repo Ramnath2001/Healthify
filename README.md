@@ -10,7 +10,7 @@ Our solution is to bring waiting times down by getting data from the hospitals f
 This method helps hospitals reduce the crowd present on the hospital grounds by a significant amount since patients have to reach only at their given appointment time. Thus over crowding can be prevented and the crowd can be easily managed.
 
 Software Required:
-Node JS (version used for this app is 14.17.0)
+Node JS (version used for this app is 14.17.0)\n
 Mongo DB
 
 
