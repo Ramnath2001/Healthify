@@ -1,6 +1,4 @@
-Title
-
-Avoid waiting rooms in hospitals
+Title: Avoid waiting rooms in hospitals
 
 Application name: Healthify
 
