@@ -11,7 +11,7 @@ This method helps hospitals reduce the crowd present on the hospital grounds by 
 
 Software Required:
 
-Node JS (version used for this app is 14.17.0)
-Mongo DB
+Node JS (version used for this app is 14.17.0), 
+ Mongo DB
 
 
