@@ -48,5 +48,16 @@ The application has a separate login and register section for both the doctors a
 6.	Click the “Reschedule” button to reschedule the appointment. Select the reschedule date and time slot. Wait for the confirmation from the patient.
 7.	Email notification will be sent if a new appointment is made or an existing appointment is cancelled.
 
+**DATA FLOW**
+
+**PATIENT DATA FLOW**
+
+![patientDataFlow](https://user-images.githubusercontent.com/65529555/119384388-428b7a80-bce2-11eb-9b9f-54fa757e13ec.jpeg)
+
+**DOCTOR DATA FLOW**
+
+![doctorDataFlow](https://user-images.githubusercontent.com/65529555/119384407-4ae3b580-bce2-11eb-9313-3fe197ae48ae.jpeg)
+
+
 
 
