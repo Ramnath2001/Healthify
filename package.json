@@ -1,0 +1,27 @@
+{
+  "name": "docapp",
+  "version": "1.0.0",
+  "description": "Avoiding waiting room in hospital app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ramnath K",
+  "license": "ISC",
+  "dependencies": {
+    "alert": "^5.0.10",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^9.0.2",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.12.8",
+    "nodemailer": "^6.6.0",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-local-mongoose": "^6.1.0"
+  }
+}
