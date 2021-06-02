@@ -6,6 +6,10 @@ Avoid waiting rooms in hospitals
 
 Healthify (A web based application to help avoid waiting rooms in hospitals)
 
+**LINK OF THE WEBSITE**
+
+https://frozen-bayou-13433.herokuapp.com/
+
 **DESCRIPTION**
 
 Given the situation of current covid pandemic, health care workers are scarce for the given patient influx. With more number of people hospitalized, small changes may go a big way.
